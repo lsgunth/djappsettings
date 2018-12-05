@@ -50,6 +50,9 @@ class DjAppSettings(object):
         self._modules = []
 
         for module_name in project_settings.INSTALLED_APPS:
+            if "rapidsms" not in module_name:
+                continue
+
             settings_module_name = "%s.settings" % module_name
             module = self._import(settings_module_name)
             if module is None:
